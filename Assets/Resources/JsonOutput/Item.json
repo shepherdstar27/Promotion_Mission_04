@@ -1,0 +1,44 @@
+[
+  {
+    "Id": "Item_0001",
+    "Name": "아이템 1",
+    "Description": "아이템 1의 설명",
+    "IconPath": "Icon/Icon_Item_Item_0001"
+  },
+  {
+    "Id": "Item_0002",
+    "Name": "아이템 2",
+    "Description": "아이템 2의 설명",
+    "IconPath": "Icon/Icon_Item_Item_0002"
+  },
+  {
+    "Id": "Item_0003",
+    "Name": "아이템 3",
+    "Description": "아이템 3의 설명",
+    "IconPath": "Icon/Icon_Item_Item_0003"
+  },
+  {
+    "Id": "Item_0004",
+    "Name": "아이템 4",
+    "Description": "아이템 4의 설명",
+    "IconPath": "Icon/Icon_Item_Item_0004"
+  },
+  {
+    "Id": "Item_0005",
+    "Name": "아이템 5",
+    "Description": "아이템 5의 설명",
+    "IconPath": "Icon/Icon_Item_Item_0005"
+  },
+  {
+    "Id": "Item_0006",
+    "Name": "아이템 6",
+    "Description": "아이템 6의 설명",
+    "IconPath": "Icon/Icon_Item_Item_0006"
+  },
+  {
+    "Id": "Item_0007",
+    "Name": "아이템 7",
+    "Description": "아이템 7의 설명",
+    "IconPath": "Icon/Icon_Item_Item_0007"
+  }
+]
