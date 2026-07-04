@@ -3,6 +3,8 @@
     private string _playerName;
     private int _level;
     private int _exp;
+    private int _maxHp;
+    private int _currentHp;
 
     private const int ExpPerLevel = 100;
 
@@ -26,20 +28,45 @@
         private set { SetField(ref _exp, value, "Exp"); }
     }
 
-    // 레벨업까지 필요한 Exp를 화면에 보여주기 위한 읽기 전용 값
-    public int ExpToNextLevel { get { return ExpPerLevel; } }
+    public int ExpToNextLevel 
+    { 
+        get { return ExpPerLevel; } 
+    }
 
-    // --- 생성자: 초기값 세팅 ---
+    public int MaxHp
+    {
+        get { return _maxHp; }
+        private set { SetField(ref _maxHp, value, "MaxHp"); }
+    }
 
+    public int CurrentHp
+    {
+        get { return _currentHp; }
+        private set { SetField(ref _currentHp, value, "CurrentHp"); }
+    }
+
+    public bool IsDead 
+    { 
+        get { return _currentHp <= 0; } 
+    }
+
+
+
+
+
+
+    // --- 초기값 세팅 ---
     public PlayerViewModel(string playerName)
     {
         _playerName = playerName;
         _level = 1;
         _exp = 0;
+        _maxHp = 100;
+        _currentHp = 100;
     }
 
-    // --- 바깥(서비스)에서 호출할 기능들 ---
 
+    // --- 바깥(서비스)에서 호출할 기능 ---
     // Exp를 더하고, 넘치면 레벨업 처리
     public void AddExp(int amount)
     {
@@ -48,14 +75,14 @@
 
         int newExp = _exp + amount;
 
-        // 넘친 만큼 레벨을 올림 (여러 레벨 한 번에 오를 수도 있음)
+        // 레벨 증가
         while (newExp >= ExpPerLevel)
         {
             newExp = newExp - ExpPerLevel;
-            Level = _level + 1; // 속성 set을 통해 방송됨
+            Level = _level + 1; 
         }
 
-        Exp = newExp; // 속성 set을 통해 방송됨
+        Exp = newExp;
     }
 
     // 이름 변경
@@ -64,6 +91,36 @@
         if (string.IsNullOrEmpty(newName))
             return;
 
-        PlayerName = newName; // 속성 set을 통해 방송됨
+        PlayerName = newName;
+    }
+
+    // HP 감소
+    public void TakeDamage(int amount)
+    {
+        if (amount <= 0)
+            return;
+        if (IsDead)
+            return;
+
+        int newHp = _currentHp - amount;
+        if (newHp < 0)
+            newHp = 0;
+
+        CurrentHp = newHp; // 속성 set을 통해 방송됨
+    }
+
+    // HP 증가
+    public void Heal(int amount)
+    {
+        if (amount <= 0)
+            return;
+        if (IsDead)
+            return;
+
+        int newHp = _currentHp + amount;
+        if (newHp > _maxHp)
+            newHp = _maxHp;
+
+        CurrentHp = newHp;
     }
 }
