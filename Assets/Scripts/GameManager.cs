@@ -5,6 +5,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
 
     [SerializeField] private string _defaultPlayerName = "Player";
+    [SerializeField] private GameObject _startButton; // 시작 버튼 오브젝트 연결
 
     private void Awake()
     {
@@ -21,11 +22,14 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("게임 시작");
 
-        // 1) 먼저 플레이어(ViewModel + View) 생성
-        NetworkManager.Instance.RequestCreateLocalPlayer(_defaultPlayerName);
+        if (CursorManager.Instance != null)
+            CursorManager.Instance.LockCursorForGameplay();
 
-        // 2) 그 다음 UI 열기
+        NetworkManager.Instance.RequestCreateLocalPlayer(_defaultPlayerName);
+        NetworkManager.Instance.RequestCreateInventory();
         UIManager.Instance.OpenUI(UIType.PlayerProfile);
-        UIManager.Instance.OpenUI(UIType.MVVMTest);
+
+        if (_startButton != null)
+            _startButton.SetActive(false);
     }
 }

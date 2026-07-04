@@ -62,7 +62,7 @@
         _level = 1;
         _exp = 0;
         _maxHp = 100;
-        _currentHp = 100;
+        _currentHp = 10;
     }
 
 

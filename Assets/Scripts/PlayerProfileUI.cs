@@ -7,6 +7,9 @@ public class PlayerProfileUI : ViewBase
     [SerializeField] private TMP_Text _nameText;
     [SerializeField] private TMP_Text _levelText;
     [SerializeField] private TMP_Text _expText;
+    [SerializeField] private TMP_Text _hpText;
+    [SerializeField] private Slider _hpBar; // 게이지 (선택)
+
 
     private PlayerViewModel _playerViewModel;
 
@@ -47,6 +50,8 @@ public class PlayerProfileUI : ViewBase
             UpdateLevel();
         else if (propertyName == "Exp")
             UpdateExp();
+        else if (propertyName == "CurrentHp" || propertyName == "MaxHp")
+            UpdateHp();
     }
 
     private void RefreshAll()
@@ -54,6 +59,7 @@ public class PlayerProfileUI : ViewBase
         UpdateName();
         UpdateLevel();
         UpdateExp();
+        UpdateHp();
     }
 
     private void UpdateName()
@@ -72,5 +78,17 @@ public class PlayerProfileUI : ViewBase
     {
         if (_expText != null)
             _expText.text = "EXP " + _playerViewModel.Exp + " / " + _playerViewModel.ExpToNextLevel;
+    }
+
+    private void UpdateHp()
+    {
+        if (_hpText != null)
+            _hpText.text = "HP " + _playerViewModel.CurrentHp + " / " + _playerViewModel.MaxHp;
+
+        if (_hpBar != null)
+        {
+            _hpBar.maxValue = _playerViewModel.MaxHp;
+            _hpBar.value = _playerViewModel.CurrentHp;
+        }
     }
 }

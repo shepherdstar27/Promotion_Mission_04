@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6297532179258200068}
   - component: {fileID: 8595215226943416251}
   - component: {fileID: 6684489491548090026}
+  - component: {fileID: 3872805920925840196}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -137,6 +138,22 @@ MonoBehaviour:
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
   m_Version: 2
+--- !u!114 &3872805920925840196
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 406666234412539934}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87a055a0cfbf1b24095ab5266ae74bc4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CameraLook
+  _playerBody: {fileID: 2654984793133136499}
+  _mouseSensitivity: 3
+  _minPitch: -30
+  _maxPitch: 60
 --- !u!1 &4356426161163106681
 GameObject:
   m_ObjectHideFlags: 0
@@ -151,6 +168,7 @@ GameObject:
   - component: {fileID: 7067892242052175812}
   - component: {fileID: 6900400397354837988}
   - component: {fileID: 3394958259605331676}
+  - component: {fileID: -5207741149647721472}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -293,3 +311,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26ab290a63708fd40a46b9dbd06833dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LocalPlayerView
+--- !u!114 &-5207741149647721472
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4356426161163106681}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 419f39f4a0aa6504690e54963dddae33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
+  _moveSpeed: 5

@@ -1,44 +1,58 @@
 [
   {
     "Id": "Item_0001",
-    "Name": "아이템 1",
-    "Description": "아이템 1의 설명",
-    "IconPath": "Icon/Icon_Item_Item_0001"
+    "Name": "+30HP 포션",
+    "Description": "+30HP 포션 이다",
+    "IconPath": "Icon/Icon_Item_Item_0001",
+    "UseType": "Heal",
+    "UseValue": 30
   },
   {
     "Id": "Item_0002",
-    "Name": "아이템 2",
-    "Description": "아이템 2의 설명",
-    "IconPath": "Icon/Icon_Item_Item_0002"
+    "Name": "+50HP 포션",
+    "Description": "+50HP 포션 이다",
+    "IconPath": "Icon/Icon_Item_Item_0002",
+    "UseType": "Heal",
+    "UseValue": 50
   },
   {
     "Id": "Item_0003",
-    "Name": "아이템 3",
-    "Description": "아이템 3의 설명",
-    "IconPath": "Icon/Icon_Item_Item_0003"
+    "Name": "+100HP 포션",
+    "Description": "+100HP 포션 이다",
+    "IconPath": "Icon/Icon_Item_Item_0003",
+    "UseType": "Heal",
+    "UseValue": 100
   },
   {
     "Id": "Item_0004",
-    "Name": "아이템 4",
-    "Description": "아이템 4의 설명",
-    "IconPath": "Icon/Icon_Item_Item_0004"
+    "Name": "-50HP 포션",
+    "Description": "-50HP 포션 이다",
+    "IconPath": "Icon/Icon_Item_Item_0004",
+    "UseType": "TakeDamage",
+    "UseValue": 50
   },
   {
     "Id": "Item_0005",
     "Name": "아이템 5",
     "Description": "아이템 5의 설명",
-    "IconPath": "Icon/Icon_Item_Item_0005"
+    "IconPath": "Icon/Icon_Item_Item_0005",
+    "UseType": "None",
+    "UseValue": 0
   },
   {
     "Id": "Item_0006",
     "Name": "아이템 6",
     "Description": "아이템 6의 설명",
-    "IconPath": "Icon/Icon_Item_Item_0006"
+    "IconPath": "Icon/Icon_Item_Item_0006",
+    "UseType": "None",
+    "UseValue": 0
   },
   {
     "Id": "Item_0007",
     "Name": "아이템 7",
     "Description": "아이템 7의 설명",
-    "IconPath": "Icon/Icon_Item_Item_0007"
+    "IconPath": "Icon/Icon_Item_Item_0007",
+    "UseType": "None",
+    "UseValue": 0
   }
 ]
