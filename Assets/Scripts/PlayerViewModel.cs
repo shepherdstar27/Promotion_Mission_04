@@ -5,6 +5,7 @@
     private int _exp;
     private int _maxHp;
     private int _currentHp;
+    private int _gold;
 
     private const int ExpPerLevel = 100;
 
@@ -50,7 +51,11 @@
         get { return _currentHp <= 0; } 
     }
 
-
+    public int Gold
+    {
+        get { return _gold; }
+        private set { SetField(ref _gold, value, "Gold"); }
+    }
 
 
 
@@ -63,6 +68,7 @@
         _exp = 0;
         _maxHp = 100;
         _currentHp = 10;
+        _gold = 99999;
     }
 
 
@@ -123,4 +129,27 @@
 
         CurrentHp = newHp;
     }
+
+    public void AddGold(int amount)
+    {
+        if (amount <= 0)
+            return;
+
+        Gold = _gold + amount; 
+    }
+
+    public bool TrySpendGold(int amount)
+    {
+        if (amount <= 0)
+            return false;
+
+        // 재화가 부족하면 차감하지 않고 실패 반환 (음수 방지)
+        if (_gold < amount)
+            return false;
+
+        Gold = _gold - amount; // 속성 set을 통해 방송됨
+        return true;
+    }
+
+
 }

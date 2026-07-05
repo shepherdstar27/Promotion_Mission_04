@@ -5,7 +5,8 @@
     "Description": "+30HP 포션 이다",
     "IconPath": "Icon/Icon_Item_Item_0001",
     "UseType": "Heal",
-    "UseValue": 30
+    "UseValue": 30,
+    "Price": 100
   },
   {
     "Id": "Item_0002",
@@ -13,7 +14,8 @@
     "Description": "+50HP 포션 이다",
     "IconPath": "Icon/Icon_Item_Item_0002",
     "UseType": "Heal",
-    "UseValue": 50
+    "UseValue": 50,
+    "Price": 1000
   },
   {
     "Id": "Item_0003",
@@ -21,7 +23,8 @@
     "Description": "+100HP 포션 이다",
     "IconPath": "Icon/Icon_Item_Item_0003",
     "UseType": "Heal",
-    "UseValue": 100
+    "UseValue": 100,
+    "Price": 10000
   },
   {
     "Id": "Item_0004",
@@ -29,7 +32,8 @@
     "Description": "-50HP 포션 이다",
     "IconPath": "Icon/Icon_Item_Item_0004",
     "UseType": "TakeDamage",
-    "UseValue": 50
+    "UseValue": 50,
+    "Price": 99999
   },
   {
     "Id": "Item_0005",
@@ -37,7 +41,8 @@
     "Description": "아이템 5의 설명",
     "IconPath": "Icon/Icon_Item_Item_0005",
     "UseType": "None",
-    "UseValue": 0
+    "UseValue": 0,
+    "Price": 1
   },
   {
     "Id": "Item_0006",
@@ -45,7 +50,8 @@
     "Description": "아이템 6의 설명",
     "IconPath": "Icon/Icon_Item_Item_0006",
     "UseType": "None",
-    "UseValue": 0
+    "UseValue": 0,
+    "Price": 1
   },
   {
     "Id": "Item_0007",
@@ -53,6 +59,7 @@
     "Description": "아이템 7의 설명",
     "IconPath": "Icon/Icon_Item_Item_0007",
     "UseType": "None",
-    "UseValue": 0
+    "UseValue": 0,
+    "Price": 1
   }
 ]

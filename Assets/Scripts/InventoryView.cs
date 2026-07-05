@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 
 public class InventoryView : ViewBase
 {
@@ -13,8 +14,10 @@ public class InventoryView : ViewBase
     [SerializeField] private TMP_Text _detailNameText;
     [SerializeField] private TMP_Text _detailDescText;
     [SerializeField] private Button _useButton;
+    [SerializeField] private TMP_Text _goldText;
 
     private InventoryViewModel _inventoryViewModel;
+    private PlayerViewModel _playerViewModel;
     private List<InventorySlotView> _slotViews = new List<InventorySlotView>();
 
     private void OnEnable()
@@ -27,6 +30,16 @@ public class InventoryView : ViewBase
             Bind(viewModel);
         }
 
+        if (_playerViewModel == null)
+        {
+            PlayerViewModel player = NetworkManager.Instance.GetLocalPlayerViewModel();
+            if (player != null)
+            {
+                _playerViewModel = player;
+                _playerViewModel.PropertyChanged += OnPlayerPropertyChanged;
+            }
+        }
+
         // 사용 버튼 연결 (중복 방지 후 등록)
         if (_useButton != null)
         {
@@ -35,12 +48,25 @@ public class InventoryView : ViewBase
         }
 
         RefreshSlots();
+        RefreshGold();
     }
 
     private void OnDisable()
     {
         if (_useButton != null)
             _useButton.onClick.RemoveListener(OnClickUse);
+
+        if (_playerViewModel != null)
+        {
+            _playerViewModel.PropertyChanged -= OnPlayerPropertyChanged;
+            _playerViewModel = null;
+        }
+    }
+
+    private void OnPlayerPropertyChanged(object sender, PropertyChangedEventArgs args)
+    {
+        if (args.PropertyName == "Gold")
+            RefreshGold();
     }
 
     protected override void OnBind()
@@ -86,6 +112,11 @@ public class InventoryView : ViewBase
         }
 
         RefreshSelection();
+    }
+    private void RefreshGold()
+    {
+        if (_goldText != null && _playerViewModel != null)
+            _goldText.text = "Gold : " + _playerViewModel.Gold;
     }
 
     private void RefreshSelection()

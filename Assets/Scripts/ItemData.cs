@@ -9,4 +9,6 @@ public class ItemData
     public string IconPath;
     public string UseType;  // 효과 종류 ("Heal", "None", "Unusable")
     public int UseValue;    // 효과 수치
+    public int Price;    // 가격
+
 }
