@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 public class NetworkManager : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class NetworkManager : MonoBehaviour
     // 순수 C# 서비스를 품는다.
     private PlayerService _playerService;
     private InventoryService _inventoryService;
+    private ShopService _shopService;
 
     [SerializeField] private int _healAmountPerItem = 30; // 아이템 1개 사용 시 회복량
 
@@ -22,6 +24,7 @@ public class NetworkManager : MonoBehaviour
 
         _playerService = new PlayerService();
         _inventoryService = new InventoryService();
+        _shopService = new ShopService();
     }
 
     // 로컬 플레이어 생성 요청을 받는 창구
@@ -140,7 +143,46 @@ public class NetworkManager : MonoBehaviour
         inventory.ConsumeItem(itemId, 1);
     }
 
+    // 상점 생성 요청 (판매 목록을 받아 생성)
+    public void RequestCreateShop(List<string> saleItemIds)
+    {
+        _shopService.CreateShop(saleItemIds);
+    }
 
+    public ShopViewModel GetShopViewModel()
+    {
+        return _shopService.GetShopViewModel();
+    }
+
+    // 구매 요청
+    public PurchaseResult RequestBuyItem(string itemId)
+    {
+        PlayerViewModel player = _playerService.GetLocalPlayerViewModel();
+        InventoryViewModel inventory = _inventoryService.GetInventoryViewModel();
+
+        if (player == null || inventory == null)
+            return PurchaseResult.InvalidItem;
+
+        // 아이템 데이터와 가격 확인
+        ItemData data = ItemDatabase.Instance.GetItemById(itemId);
+        if (data == null)
+            return PurchaseResult.InvalidItem;
+
+        int price = data.Price;
+
+        // 재화 차감 시도 (내부에서 부족하면 차감 안 하고 false)
+        bool paid = player.TrySpendGold(price);
+        if (paid == false)
+        {
+            Debug.Log(data.Name + " 구매 실패: 재화 부족 (가격 " + price + ", 보유 " + player.Gold + ")");
+            return PurchaseResult.NotEnoughGold;
+        }
+
+        // 차감 성공했으니 인벤토리에 추가
+        inventory.AddItem(itemId, 1);
+        Debug.Log(data.Name + " 구매 성공! 남은 재화 " + player.Gold);
+        return PurchaseResult.Success;
+    }
 
 
 }

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
@@ -6,6 +7,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private string _defaultPlayerName = "Player";
     [SerializeField] private GameObject _startButton; // 시작 버튼 오브젝트 연결
+    [SerializeField] private List<string> _shopSaleItemIds = new List<string>(); // 상점 판매목록
 
     private void Awake()
     {
@@ -28,6 +30,7 @@ public class GameManager : MonoBehaviour
         NetworkManager.Instance.RequestCreateLocalPlayer(_defaultPlayerName);
         NetworkManager.Instance.RequestCreateInventory();
         UIManager.Instance.OpenUI(UIType.PlayerProfile);
+        NetworkManager.Instance.RequestCreateShop(_shopSaleItemIds);
 
         if (_startButton != null)
             _startButton.SetActive(false);

@@ -7,6 +7,7 @@ public enum UIType
     PlayerProfile,
     MVVMTest,
     Inventory,
+    Shop,
 }
 
 public class UIManager : MonoBehaviour
